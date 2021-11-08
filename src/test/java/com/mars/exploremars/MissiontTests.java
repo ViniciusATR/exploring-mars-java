@@ -18,13 +18,9 @@ public class MissiontTests {
 
     @Test
     @DisplayName("Can launch new probe")
-    void shouldLaunchProbe() {
+    void shouldLaunchProbe() throws OutOfBoundsException {
         Probe expectedProbe = new Probe(0, 3,4, Direction.NORTH);
-        try {
-            int probeId = mission.launchProbe(3, 4, Direction.NORTH);
-        } catch (OutOfBoundsException e ) {
-            System.out.println(e.toString());
-        }
+        int probeId = mission.launchProbe(3, 4, Direction.NORTH);
         assert mission.getProbe(0).equals(expectedProbe);
     }
 
