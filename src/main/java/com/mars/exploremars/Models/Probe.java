@@ -73,6 +73,23 @@ public class Probe {
         }
     }
 
+    public void reverseMove(){
+        switch (direction){
+            case NORTH:
+                position.changePosition(0, -1);
+                break;
+            case EAST:
+                position.changePosition(-1,0);
+                break;
+            case SOUTH:
+                position.changePosition(0,1);
+                break;
+            case WEST:
+                position.changePosition(1,0);
+                break;
+        }
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
