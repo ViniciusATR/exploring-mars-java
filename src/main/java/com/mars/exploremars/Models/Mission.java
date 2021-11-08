@@ -19,11 +19,10 @@ public class Mission {
     public int launchProbe(int x, int y, Direction direction) throws OutOfBoundsException {
         int nProbes = probes.size();
         Probe probe = new Probe(nProbes, x, y, direction);
-        if (isInBounds(probe.getPosition())) {
-            probes.add(probe);
-        } else {
+        if (isOutOfBounds(probe.getPosition())) {
             throw new OutOfBoundsException("Could not launch probe", probe.getPosition());
         }
+        probes.add(probe);
         return nProbes;
     }
 
@@ -35,11 +34,11 @@ public class Mission {
         return probes.get(id);
     }
 
-    public boolean isInBounds(Position position) {
+    public boolean isOutOfBounds(Position position) {
         boolean isInXBound = position.getX() >= 0 && position.getX() <= upperLimit.getX();
         boolean isInYBound = position.getY() >= 0 && position.getY() <= upperLimit.getY();
 
-        return isInXBound && isInYBound;
+        return !(isInXBound && isInYBound);
     }
 
     public int getId() {
