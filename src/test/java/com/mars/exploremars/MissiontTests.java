@@ -1,8 +1,7 @@
 package com.mars.exploremars;
-import com.mars.exploremars.Exceptions.OutOfBoundsError;
+import com.mars.exploremars.Exceptions.OutOfBoundsException;
 import com.mars.exploremars.Models.Direction;
 import com.mars.exploremars.Models.Mission;
-import com.mars.exploremars.Models.Position;
 import com.mars.exploremars.Models.Probe;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -23,7 +22,7 @@ public class MissiontTests {
         Probe expectedProbe = new Probe(0, 3,4, Direction.NORTH);
         try {
             int probeId = mission.launchProbe(3, 4, Direction.NORTH);
-        } catch (OutOfBoundsError e ) {
+        } catch (OutOfBoundsException e ) {
             System.out.println(e.toString());
         }
         assert mission.getProbe(0).equals(expectedProbe);
@@ -33,7 +32,7 @@ public class MissiontTests {
     @DisplayName("Cannot launch out of bounds probe")
     void shouldThrowOutOfBoundsException() {
         Probe expectedProbe = new Probe(0, 6,4, Direction.NORTH);
-        OutOfBoundsError error = Assertions.assertThrows(OutOfBoundsError.class,
+        OutOfBoundsException error = Assertions.assertThrows(OutOfBoundsException.class,
                 () -> mission.launchProbe(6, 4, Direction.NORTH));
     }
 }

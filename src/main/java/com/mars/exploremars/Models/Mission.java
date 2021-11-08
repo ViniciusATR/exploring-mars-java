@@ -1,6 +1,6 @@
 package com.mars.exploremars.Models;
 
-import com.mars.exploremars.Exceptions.OutOfBoundsError;
+import com.mars.exploremars.Exceptions.OutOfBoundsException;
 
 import java.util.ArrayList;
 
@@ -16,13 +16,13 @@ public class Mission {
         this.probes = new ArrayList<Probe>();
     }
 
-    public int launchProbe(int x, int y, Direction direction) throws OutOfBoundsError {
+    public int launchProbe(int x, int y, Direction direction) throws OutOfBoundsException {
         int nProbes = probes.size();
         Probe probe = new Probe(nProbes, x, y, direction);
         if (isInBounds(probe.getPosition())) {
             probes.add(probe);
         } else {
-            throw new OutOfBoundsError("Could not launch probe", probe.getPosition());
+            throw new OutOfBoundsException("Could not launch probe", probe.getPosition());
         }
         return nProbes;
     }
