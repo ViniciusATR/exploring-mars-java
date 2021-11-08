@@ -1,5 +1,7 @@
 package com.mars.exploremars.Models;
 
+import java.util.Objects;
+
 public class Probe {
 
     private final int id;
@@ -69,5 +71,18 @@ public class Probe {
                 position.changePosition(-1,0);
                 break;
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Probe probe = (Probe) o;
+        return id == probe.id && direction == probe.direction && position.equals(probe.position);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, direction, position);
     }
 }
