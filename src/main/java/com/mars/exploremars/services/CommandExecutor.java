@@ -1,9 +1,9 @@
-package com.mars.exploremars.Services;
+package com.mars.exploremars.services;
 
-import com.mars.exploremars.Exceptions.InvalidCommandException;
-import com.mars.exploremars.Models.CommandEnum;
-import com.mars.exploremars.Models.Mission;
-import com.mars.exploremars.Models.Probe;
+import com.mars.exploremars.exceptions.InvalidCommandException;
+import com.mars.exploremars.models.CommandEnum;
+import com.mars.exploremars.models.Mission;
+import com.mars.exploremars.models.Probe;
 
 import java.util.ArrayList;
 

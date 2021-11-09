@@ -1,13 +1,11 @@
 package com.mars.exploremars;
 
-import com.mars.exploremars.Models.Direction;
-import com.mars.exploremars.Models.Position;
-import com.mars.exploremars.Models.Probe;
+import com.mars.exploremars.models.Direction;
+import com.mars.exploremars.models.Position;
+import com.mars.exploremars.models.Probe;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.util.Objects;
 
 public class ProbeTests {
     Probe probe;

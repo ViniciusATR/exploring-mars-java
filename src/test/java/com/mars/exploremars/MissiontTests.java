@@ -1,8 +1,8 @@
 package com.mars.exploremars;
-import com.mars.exploremars.Exceptions.OutOfBoundsException;
-import com.mars.exploremars.Models.Direction;
-import com.mars.exploremars.Models.Mission;
-import com.mars.exploremars.Models.Probe;
+import com.mars.exploremars.exceptions.OutOfBoundsException;
+import com.mars.exploremars.models.Direction;
+import com.mars.exploremars.models.Mission;
+import com.mars.exploremars.models.Probe;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

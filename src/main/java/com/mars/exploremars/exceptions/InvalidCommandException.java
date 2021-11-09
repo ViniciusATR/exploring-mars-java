@@ -1,4 +1,4 @@
-package com.mars.exploremars.Exceptions;
+package com.mars.exploremars.exceptions;
 
 public class InvalidCommandException extends Exception {
 

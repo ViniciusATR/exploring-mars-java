@@ -1,6 +1,6 @@
-package com.mars.exploremars.Models;
+package com.mars.exploremars.models;
 
-import com.mars.exploremars.Exceptions.OutOfBoundsException;
+import com.mars.exploremars.exceptions.OutOfBoundsException;
 
 import java.util.ArrayList;
 import java.util.HashMap;

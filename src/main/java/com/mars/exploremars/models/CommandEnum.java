@@ -1,6 +1,4 @@
-package com.mars.exploremars.Models;
-
-import com.mars.exploremars.Exceptions.InvalidCommandException;
+package com.mars.exploremars.models;
 
 import java.util.ArrayList;
 import java.util.stream.Collectors;
