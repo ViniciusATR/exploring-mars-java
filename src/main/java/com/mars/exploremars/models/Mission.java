@@ -3,31 +3,41 @@ package com.mars.exploremars.Models;
 import com.mars.exploremars.Exceptions.OutOfBoundsException;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Mission {
 
-    private final int id;
+    private final Integer id;
     private final Position upperLimit;
-    private ArrayList<Probe> probes;
+    private Integer currentId;
+    private HashMap<Integer, Probe> probes;
 
     public Mission(int id, int maxX, int maxY) {
         this.id = id;
+        this.currentId = 0;
         this.upperLimit = new Position(maxX, maxY);
-        this.probes = new ArrayList<Probe>();
+        this.probes = new HashMap<Integer, Probe>();
     }
 
     public int launchProbe(int x, int y, Direction direction) throws OutOfBoundsException {
-        int nProbes = probes.size();
-        Probe probe = new Probe(nProbes, x, y, direction);
+        Integer probeId = currentId;
+        currentId++;
+        Probe probe = new Probe(probeId, x, y, direction);
         if (isOutOfBounds(probe.getPosition())) {
             throw new OutOfBoundsException("Could not launch probe", probe.getPosition());
         }
-        probes.add(probe);
-        return nProbes;
+        probes.put(probeId, probe);
+        return probeId;
     }
 
     public ArrayList<Probe> getProbes() {
-        return probes;
+        ArrayList<Probe> probeList = new ArrayList<Probe>();
+        for (Integer key : probes.keySet()) {
+            Probe probe = probes.get(key);
+            probeList.add(probe);
+        }
+
+        return probeList;
     }
 
     public Probe getProbe(int id) {

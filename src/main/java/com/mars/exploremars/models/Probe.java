@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Probe {
 
-    private final int id;
+    private final Integer id;
     private Direction direction;
     private Position position;
 
