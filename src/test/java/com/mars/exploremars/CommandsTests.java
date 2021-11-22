@@ -2,11 +2,11 @@ package com.mars.exploremars;
 
 import com.mars.exploremars.exceptions.InvalidCommandException;
 import com.mars.exploremars.exceptions.OutOfBoundsException;
-import com.mars.exploremars.models.CommandEnum;
-import com.mars.exploremars.models.Direction;
-import com.mars.exploremars.models.Mission;
-import com.mars.exploremars.models.Probe;
-import com.mars.exploremars.services.CommandExecutor;
+import com.mars.exploremars.core.CommandEnum;
+import com.mars.exploremars.core.Direction;
+import com.mars.exploremars.core.Mission;
+import com.mars.exploremars.core.Probe;
+import com.mars.exploremars.core.CommandExecutor;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

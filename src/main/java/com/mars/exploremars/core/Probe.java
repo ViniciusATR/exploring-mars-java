@@ -1,4 +1,4 @@
-package com.mars.exploremars.models;
+package com.mars.exploremars.core;
 
 import java.util.Objects;
 

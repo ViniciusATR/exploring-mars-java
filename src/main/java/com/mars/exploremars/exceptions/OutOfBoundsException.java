@@ -1,6 +1,6 @@
 package com.mars.exploremars.exceptions;
 
-import com.mars.exploremars.models.Position;
+import com.mars.exploremars.core.Position;
 
 public class OutOfBoundsException extends Exception {
 

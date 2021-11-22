@@ -1,6 +1,6 @@
-package com.mars.exploremars.services;
+package com.mars.exploremars.ports;
 
-import com.mars.exploremars.models.Mission;
+import com.mars.exploremars.core.Mission;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;

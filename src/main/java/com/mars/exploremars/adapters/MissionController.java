@@ -1,8 +1,8 @@
-package com.mars.exploremars.controllers;
+package com.mars.exploremars.adapters;
 
-import com.mars.exploremars.models.requests.CreateMissionRequest;
-import com.mars.exploremars.models.responses.CreateMissionResponse;
-import com.mars.exploremars.services.MissionService;
+import com.mars.exploremars.ports.requests.CreateMissionRequest;
+import com.mars.exploremars.ports.responses.SimpleMissionResponse;
+import com.mars.exploremars.ports.MissionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,10 +18,10 @@ public class MissionController {
 
     @PostMapping
     @RequestMapping("/create")
-    public CreateMissionResponse createMission(@RequestBody CreateMissionRequest request) {
+    public SimpleMissionResponse createMission(@RequestBody CreateMissionRequest request) {
         int createdId = missionService.createNewMission(request.getLimitX(), request.getLimitY());
-        CreateMissionResponse createMissionResponse = new CreateMissionResponse(createdId, request.getLimitX(), request.getLimitY());
-        return createMissionResponse;
+        SimpleMissionResponse simpleMissionResponse = new SimpleMissionResponse(createdId, request.getLimitX(), request.getLimitY());
+        return simpleMissionResponse;
     }
 
 

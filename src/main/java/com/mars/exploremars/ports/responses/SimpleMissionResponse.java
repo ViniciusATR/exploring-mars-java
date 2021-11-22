@@ -1,8 +1,8 @@
-package com.mars.exploremars.models.responses;
+package com.mars.exploremars.ports.responses;
 
 import java.util.Objects;
 
-public class CreateMissionResponse {
+public class SimpleMissionResponse {
 
     private Integer id;
     private Integer limitX;
@@ -12,7 +12,7 @@ public class CreateMissionResponse {
         return limitX;
     }
 
-    public CreateMissionResponse(int id, Integer maximumX, Integer maximumY) {
+    public SimpleMissionResponse(int id, Integer maximumX, Integer maximumY) {
         this.id = id;
         this.limitX = maximumX;
         this.limitY = maximumY;
@@ -42,7 +42,7 @@ public class CreateMissionResponse {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        CreateMissionResponse that = (CreateMissionResponse) o;
+        SimpleMissionResponse that = (SimpleMissionResponse) o;
         return Objects.equals(id, that.id) && Objects.equals(limitX, that.limitX) && Objects.equals(limitY, that.limitY);
     }
 

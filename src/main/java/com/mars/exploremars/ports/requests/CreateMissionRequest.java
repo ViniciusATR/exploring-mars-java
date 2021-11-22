@@ -1,4 +1,4 @@
-package com.mars.exploremars.models.requests;
+package com.mars.exploremars.ports.requests;
 
 import java.util.Objects;
 
