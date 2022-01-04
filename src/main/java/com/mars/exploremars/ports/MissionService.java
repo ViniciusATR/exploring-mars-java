@@ -1,6 +1,7 @@
 package com.mars.exploremars.ports;
 
 import com.mars.exploremars.core.Mission;
+import com.mars.exploremars.ports.responses.SimpleMissionResponse;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -8,11 +9,11 @@ import java.util.HashMap;
 @Service
 public class MissionService {
 
-    private HashMap<Integer, Mission> missions;
+    private final HashMap<Integer, Mission> missions;
     private Integer currentId;
 
     public MissionService(){
-        this.missions = new HashMap<Integer, Mission>();
+        this.missions = new HashMap<>();
         this.currentId = 0;
     }
 
@@ -23,6 +24,11 @@ public class MissionService {
         missions.put(missionId, mission);
 
         return missionId;
+    }
+
+    public SimpleMissionResponse getMission(Integer id) {
+        Mission mission = missions.get(id);
+        return new SimpleMissionResponse(mission.getId(), mission.getUpperLimit().getX(), mission.getUpperLimit().getY());
     }
 
     public void launchNewProbe(int missionId){}

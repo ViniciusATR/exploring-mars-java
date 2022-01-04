@@ -6,6 +6,11 @@ public class CreateMissionRequest {
     private Integer limitX;
     private Integer limitY;
 
+    public CreateMissionRequest(Integer limitX, Integer limitY) {
+        this.limitX = limitX;
+        this.limitY = limitY;
+    }
+
     public Integer getLimitX() {
         return limitX;
     }
