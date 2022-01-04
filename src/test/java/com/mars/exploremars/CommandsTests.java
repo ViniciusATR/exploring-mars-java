@@ -1,12 +1,8 @@
 package com.mars.exploremars;
 
+import com.mars.exploremars.core.*;
 import com.mars.exploremars.exceptions.InvalidCommandException;
 import com.mars.exploremars.exceptions.OutOfBoundsException;
-import com.mars.exploremars.core.CommandEnum;
-import com.mars.exploremars.core.Direction;
-import com.mars.exploremars.core.Mission;
-import com.mars.exploremars.core.Probe;
-import com.mars.exploremars.core.CommandExecutor;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -37,7 +33,8 @@ public class CommandsTests {
     void shouldExecuteValidCommand() throws OutOfBoundsException, InvalidCommandException {
 
         Mission mission = new Mission(1, 5, 5);
-        int probeId = mission.launchProbe(1,2, Direction.NORTH);
+        Position position = new Position(1, 2);
+        int probeId = mission.launchProbe(position, Direction.NORTH);
         String command = "LMLMLMLMM";
         Probe expectedProbe = new Probe(0, 1, 3, Direction.NORTH);
 
@@ -51,7 +48,8 @@ public class CommandsTests {
     void shouldThrowExceptionForInvalidString() throws OutOfBoundsException {
 
         Mission mission = new Mission(1, 5, 5);
-        int probeId = mission.launchProbe(1,2, Direction.NORTH);
+        Position position = new Position(1, 2);
+        int probeId = mission.launchProbe(position, Direction.NORTH);
         String command = "ABCLMLMLMLMM";
 
         InvalidCommandException error = Assertions.assertThrows(InvalidCommandException.class,
@@ -64,7 +62,8 @@ public class CommandsTests {
     void shouldThrowExceptionForInvalidPosition() throws OutOfBoundsException {
 
         Mission mission = new Mission(1, 5, 5);
-        int probeId = mission.launchProbe(4,4, Direction.NORTH);
+        Position position = new Position(4, 4);
+        int probeId = mission.launchProbe(position, Direction.NORTH);
         String command = "MMMMMMMM";
 
         InvalidCommandException error = Assertions.assertThrows(InvalidCommandException.class,

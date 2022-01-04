@@ -1,4 +1,5 @@
 package com.mars.exploremars;
+import com.mars.exploremars.core.Position;
 import com.mars.exploremars.exceptions.OutOfBoundsException;
 import com.mars.exploremars.core.Direction;
 import com.mars.exploremars.core.Mission;
@@ -20,7 +21,8 @@ public class MissionTests {
     @DisplayName("Can launch new probe")
     void shouldLaunchProbe() throws OutOfBoundsException {
         Probe expectedProbe = new Probe(0, 3,4, Direction.NORTH);
-        int probeId = mission.launchProbe(3, 4, Direction.NORTH);
+        Position position = new Position(3, 4);
+        int probeId = mission.launchProbe(position, Direction.NORTH);
         assert mission.getProbe(0).equals(expectedProbe);
     }
 
@@ -28,7 +30,8 @@ public class MissionTests {
     @DisplayName("Cannot launch out of bounds probe")
     void shouldThrowOutOfBoundsException() {
         Probe expectedProbe = new Probe(0, 6,4, Direction.NORTH);
+        Position position = new Position(6,4);
         OutOfBoundsException error = Assertions.assertThrows(OutOfBoundsException.class,
-                () -> mission.launchProbe(6, 4, Direction.NORTH));
+                () -> mission.launchProbe(position, Direction.NORTH));
     }
 }

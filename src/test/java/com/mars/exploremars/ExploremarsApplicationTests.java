@@ -1,8 +1,12 @@
 package com.mars.exploremars;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mars.exploremars.core.Direction;
+import com.mars.exploremars.core.Position;
 import com.mars.exploremars.ports.requests.CreateMissionRequest;
+import com.mars.exploremars.ports.requests.LaunchProbeRequest;
 import com.mars.exploremars.ports.responses.SimpleMissionResponse;
+import com.mars.exploremars.ports.responses.SimpleProbeResponse;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -19,10 +23,11 @@ class ExploremarsApplicationTests {
 	@Autowired
 	private MockMvc mockMvc;
 
+	private ObjectMapper objectMapper = new ObjectMapper();
+
 	@Test
 	void shouldCreateNewMission () throws Exception {
 
-		ObjectMapper objectMapper = new ObjectMapper();
 		CreateMissionRequest body = new CreateMissionRequest(5,5);
 		SimpleMissionResponse expectedResponse = new SimpleMissionResponse(0, 5, 5);
 
@@ -36,7 +41,6 @@ class ExploremarsApplicationTests {
 	@Test
 	void shouldGetCreatedMission () throws Exception {
 
-		ObjectMapper objectMapper = new ObjectMapper();
 		CreateMissionRequest body = new CreateMissionRequest(5,5);
 		SimpleMissionResponse expectedResponse = new SimpleMissionResponse(0, 5, 5);
 
@@ -53,10 +57,27 @@ class ExploremarsApplicationTests {
 	@Test
 	void shouldReturn404IfMissionDoesNotExist () throws Exception {
 
-		ObjectMapper objectMapper = new ObjectMapper();
 		mockMvc.perform(MockMvcRequestBuilders.get("/v1/missions/0"))
 				.andExpect(MockMvcResultMatchers.status().is4xxClientError());
 
+	}
+
+	@Test
+	void shouldLaunchProbe() throws Exception {
+
+		CreateMissionRequest missionBody = new CreateMissionRequest(5,5);
+		LaunchProbeRequest probeBody = new LaunchProbeRequest(Direction.NORTH, new Position(1, 2));
+		SimpleProbeResponse expectedResponse = new SimpleProbeResponse(0, Direction.NORTH, new Position(1,2));
+
+		mockMvc.perform(MockMvcRequestBuilders.post("/v1/missions/create")
+				.contentType(MediaType.APPLICATION_JSON)
+				.content(objectMapper.writeValueAsString(missionBody)));
+
+		mockMvc.perform(MockMvcRequestBuilders.post("/v1/missions/0/launch")
+				.contentType(MediaType.APPLICATION_JSON)
+				.content(objectMapper.writeValueAsString(probeBody)))
+				.andExpect(MockMvcResultMatchers.status().isOk())
+				.andExpect(MockMvcResultMatchers.content().json(objectMapper.writeValueAsString(expectedResponse)));
 	}
 
 }

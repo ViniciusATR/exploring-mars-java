@@ -14,6 +14,12 @@ public class Probe {
         this.id = id;
     }
 
+    public Probe(int id, Position position, Direction direction) {
+        this.position = position;
+        this.id = id;
+        this.direction = direction;
+    }
+
     public Direction getDirection() {
         return direction;
     }

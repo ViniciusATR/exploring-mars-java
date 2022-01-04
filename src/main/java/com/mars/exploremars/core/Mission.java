@@ -19,14 +19,14 @@ public class Mission {
         this.probes = new HashMap<Integer, Probe>();
     }
 
-    public int launchProbe(int x, int y, Direction direction) throws OutOfBoundsException {
+    public int launchProbe(Position position, Direction direction) throws OutOfBoundsException {
         Integer probeId = currentId;
-        currentId++;
-        Probe probe = new Probe(probeId, x, y, direction);
+        Probe probe = new Probe(probeId, position, direction);
         if (isOutOfBounds(probe.getPosition())) {
             throw new OutOfBoundsException("Could not launch probe", probe.getPosition());
         }
         probes.put(probeId, probe);
+        currentId++;
         return probeId;
     }
 
