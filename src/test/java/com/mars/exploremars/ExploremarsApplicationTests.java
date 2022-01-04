@@ -50,4 +50,13 @@ class ExploremarsApplicationTests {
 
 	}
 
+	@Test
+	void shouldReturn404IfMissionDoesNotExist () throws Exception {
+
+		ObjectMapper objectMapper = new ObjectMapper();
+		mockMvc.perform(MockMvcRequestBuilders.get("/v1/missions/0"))
+				.andExpect(MockMvcResultMatchers.status().is4xxClientError());
+
+	}
+
 }

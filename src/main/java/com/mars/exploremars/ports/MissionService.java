@@ -28,6 +28,7 @@ public class MissionService {
 
     public SimpleMissionResponse getMission(Integer id) {
         Mission mission = missions.get(id);
+        if (mission == null) return null;
         return new SimpleMissionResponse(mission.getId(), mission.getUpperLimit().getX(), mission.getUpperLimit().getY());
     }
 
