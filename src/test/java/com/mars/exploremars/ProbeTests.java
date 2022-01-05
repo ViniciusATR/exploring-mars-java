@@ -38,11 +38,4 @@ public class ProbeTests {
         assert probe.getPosition().equals(expectedPosition);
     }
 
-    @Test
-    @DisplayName("Reverting move probe North should subtract one to y coordinate")
-    void shouldRevertMove() {
-        Position expectedPosition = new Position(0, -1);
-        probe.reverseMove();
-        assert probe.getPosition().equals(expectedPosition);
-    }
 }

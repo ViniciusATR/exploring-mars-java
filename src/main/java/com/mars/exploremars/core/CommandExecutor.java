@@ -1,9 +1,6 @@
 package com.mars.exploremars.core;
 
 import com.mars.exploremars.exceptions.InvalidCommandException;
-import com.mars.exploremars.core.CommandEnum;
-import com.mars.exploremars.core.Mission;
-import com.mars.exploremars.core.Probe;
 
 import java.util.ArrayList;
 
@@ -14,12 +11,13 @@ public class CommandExecutor {
             throw new InvalidCommandException(commandString, "Invalid character in string");
         }
 
+        probe.makeCheckpoint();
         ArrayList<CommandEnum> commandList = CommandEnum.parseCommandString(commandString);
 
         for (CommandEnum command : commandList) {
             executeSingleCommand(command, probe);
             if (mission.isOutOfBounds(probe.getPosition())){
-                probe.reverseMove();
+                probe.revertToCheckpoint();
                 throw new InvalidCommandException(commandString, "Command results in invalid position");
             }
         }
