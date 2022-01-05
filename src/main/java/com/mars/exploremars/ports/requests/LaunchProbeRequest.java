@@ -1,34 +1,29 @@
 package com.mars.exploremars.ports.requests;
 
-import com.mars.exploremars.core.Direction;
-import com.mars.exploremars.core.Position;
-
 import java.util.Objects;
 
 public class LaunchProbeRequest {
 
-    private Direction direction;
-    private Position position;
+    private final String direction;
+    private final Integer x;
+    private final Integer y;
 
-    public LaunchProbeRequest(Direction direction, Position position) {
+    public LaunchProbeRequest(String direction, Integer x, Integer y) {
         this.direction = direction;
-        this.position = position;
+        this.x = x;
+        this.y = y;
     }
 
-    public Direction getDirection() {
+    public String getDirection() {
         return direction;
     }
 
-    public void setDirection(Direction direction) {
-        this.direction = direction;
+    public Integer getX() {
+        return x;
     }
 
-    public Position getPosition() {
-        return position;
-    }
-
-    public void setPosition(Position position) {
-        this.position = position;
+    public Integer getY() {
+        return y;
     }
 
     @Override
@@ -36,19 +31,20 @@ public class LaunchProbeRequest {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         LaunchProbeRequest that = (LaunchProbeRequest) o;
-        return direction == that.direction && position.equals(that.position);
+        return Objects.equals(direction, that.direction) && Objects.equals(x, that.x) && Objects.equals(y, that.y);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash( direction, position);
+        return Objects.hash(direction, x, y);
     }
 
     @Override
     public String toString() {
         return "LaunchProbeRequest{" +
                 "direction=" + direction +
-                ", position=" + position +
+                ", x=" + x +
+                ", y=" + y +
                 '}';
     }
 }

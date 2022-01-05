@@ -7,12 +7,15 @@ import com.mars.exploremars.ports.requests.CreateMissionRequest;
 import com.mars.exploremars.ports.requests.LaunchProbeRequest;
 import com.mars.exploremars.ports.responses.SimpleMissionResponse;
 import com.mars.exploremars.ports.responses.SimpleProbeResponse;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
@@ -23,9 +26,10 @@ class ExploremarsApplicationTests {
 	@Autowired
 	private MockMvc mockMvc;
 
-	private ObjectMapper objectMapper = new ObjectMapper();
+	private final ObjectMapper objectMapper = new ObjectMapper();
 
 	@Test
+	@DirtiesContext
 	void shouldCreateNewMission () throws Exception {
 
 		CreateMissionRequest body = new CreateMissionRequest(5,5);
@@ -39,6 +43,7 @@ class ExploremarsApplicationTests {
 	}
 
 	@Test
+	@DirtiesContext
 	void shouldGetCreatedMission () throws Exception {
 
 		CreateMissionRequest body = new CreateMissionRequest(5,5);
@@ -63,10 +68,11 @@ class ExploremarsApplicationTests {
 	}
 
 	@Test
+	@DirtiesContext
 	void shouldLaunchProbe() throws Exception {
 
 		CreateMissionRequest missionBody = new CreateMissionRequest(5,5);
-		LaunchProbeRequest probeBody = new LaunchProbeRequest(Direction.NORTH, new Position(1, 2));
+		LaunchProbeRequest probeBody = new LaunchProbeRequest("N", 1, 2);
 		SimpleProbeResponse expectedResponse = new SimpleProbeResponse(0, Direction.NORTH, new Position(1,2));
 
 		mockMvc.perform(MockMvcRequestBuilders.post("/v1/missions/create")
@@ -79,5 +85,4 @@ class ExploremarsApplicationTests {
 				.andExpect(MockMvcResultMatchers.status().isOk())
 				.andExpect(MockMvcResultMatchers.content().json(objectMapper.writeValueAsString(expectedResponse)));
 	}
-
 }
