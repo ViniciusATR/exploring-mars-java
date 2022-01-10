@@ -35,7 +35,7 @@ class ExploremarsApplicationTests {
 		CreateMissionRequest body = new CreateMissionRequest(5,5);
 		SimpleMissionResponse expectedResponse = new SimpleMissionResponse(0, 5, 5);
 
-		mockMvc.perform(MockMvcRequestBuilders.post("/v1/missions/create")
+		mockMvc.perform(MockMvcRequestBuilders.post("/v1/missions")
 				.contentType(MediaType.APPLICATION_JSON)
 				.content(objectMapper.writeValueAsString(body)))
 				.andExpect(MockMvcResultMatchers.status().isOk())
@@ -49,7 +49,7 @@ class ExploremarsApplicationTests {
 		CreateMissionRequest body = new CreateMissionRequest(5,5);
 		SimpleMissionResponse expectedResponse = new SimpleMissionResponse(0, 5, 5);
 
-		mockMvc.perform(MockMvcRequestBuilders.post("/v1/missions/create")
+		mockMvc.perform(MockMvcRequestBuilders.post("/v1/missions")
 						.contentType(MediaType.APPLICATION_JSON)
 						.content(objectMapper.writeValueAsString(body)));
 
@@ -75,7 +75,7 @@ class ExploremarsApplicationTests {
 		LaunchProbeRequest probeBody = new LaunchProbeRequest("N", 1, 2);
 		SimpleProbeResponse expectedResponse = new SimpleProbeResponse(0, Direction.NORTH, new Position(1,2));
 
-		mockMvc.perform(MockMvcRequestBuilders.post("/v1/missions/create")
+		mockMvc.perform(MockMvcRequestBuilders.post("/v1/missions")
 				.contentType(MediaType.APPLICATION_JSON)
 				.content(objectMapper.writeValueAsString(missionBody)));
 

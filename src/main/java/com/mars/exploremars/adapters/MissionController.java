@@ -21,7 +21,7 @@ public class MissionController {
     MissionService missionService;
 
     @PostMapping
-    @RequestMapping("/create")
+    @RequestMapping("")
     public SimpleMissionResponse createMission(@RequestBody CreateMissionRequest request) {
         return missionService.createNewMission(request);
     }
